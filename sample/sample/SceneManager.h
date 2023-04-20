@@ -8,7 +8,7 @@
 #define Rand (SceneManager::GetInstance().GetRandomClass())
 #define Thread (SceneManager::GetInstance().GetThredPool())
 
-//class Resource
+class ResourceManager;
 
 class BaseScene;
 class ThreadPool;
@@ -47,6 +47,13 @@ public:
 	/// <param name=""></param>
 	/// <returns></returns>
 	ThreadPool& GetThredPool(void);
+
+	/// <summary>
+	/// リソースマネージャーの取得
+	/// </summary>
+	/// <param name=""></param>
+	/// <returns></returns>
+	ResourceManager& GetResourceManager(void);
 
 	/// <summary>
 	/// プログラムを終了
@@ -106,5 +113,8 @@ private:
 
 	// コントローラー
 	std::unique_ptr<Controller> controller_;
+
+	// リソースマネージャー
+	std::unique_ptr<ResourceManager> resourceMnager_;
 };
 

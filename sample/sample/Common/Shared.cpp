@@ -106,6 +106,10 @@ SharedShaderHandle::SharedShaderHandle(const SharedShaderHandle& sharedHandle) n
 
 SharedShaderHandle::~SharedShaderHandle()
 {
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		
+	}
 }
 
 SharedShaderHandle& SharedShaderHandle::operator=(const SharedShaderHandle& sharedHandle) noexcept

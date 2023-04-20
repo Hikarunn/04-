@@ -1,5 +1,6 @@
 #include "SceneManager.h"
 #include <DxLib.h>
+#include "Common/ResourceManager.h"
 
 #include "Common/Input/InputComfig/InputConfig.h"
 #include "Common/ThreadPool.h"
@@ -30,7 +31,7 @@ int SceneManager::Run(void)
 
 void SceneManager::Draw()
 {
-	scene_->
+	//scene_->
 }
 
 void SceneManager::Update()
