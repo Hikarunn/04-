@@ -12,7 +12,7 @@
 BaseScene::BaseScene(ScreenID id, SceneID sceneID):
 	screenID_{ id }, nextID_{ sceneID }
 {
-	lpScene
+	
 }
 
 BaseScene::BaseScene(std::unique_ptr<ObjectManager>&& objectManager, ScreenID id,SceneID sceneID):

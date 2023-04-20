@@ -161,12 +161,14 @@
     <ClCompile Include="Object\ObjectID.cpp" />
     <ClCompile Include="Object\ObjectManager.cpp" />
     <ClCompile Include="Common\Input\InputType\Pad.cpp" />
+    <ClCompile Include="Common\ResourceManager.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Common\Time.cpp" />
     <ClCompile Include="Common\ThreadPool.cpp" />
     <ClCompile Include="Common\Worker.cpp" />
+    <ClCompile Include="Common\Shared.cpp" />
     <ClCompile Include="UI\UiBase.cpp" />
     <ClCompile Include="UI\UiManager.cpp" />
   </ItemGroup>
@@ -198,12 +200,14 @@
     <ClInclude Include="Object\ObjectID.h" />
     <ClInclude Include="Object\ObjectManager.h" />
     <ClInclude Include="Common\Input\InputType\Pad.h" />
+    <ClInclude Include="Common\ResourceManager.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Common\Time.h" />
     <ClInclude Include="Scene\SceneID.h" />
     <ClInclude Include="Common\ThreadPool.h" />
     <ClInclude Include="Common\Worker.h" />
+    <ClInclude Include="Common\Shared.h" />
     <ClInclude Include="UI\UiBase.h" />
     <ClInclude Include="UI\UiManager.h" />
     <ClInclude Include="UI\UiID.h" />
