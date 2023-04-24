@@ -4,6 +4,7 @@
 #include <mutex>
 #include <list>
 #include <tuple>
+#include "Shared.h"
 #include "ScreenID.h"
 
 class ResourceManager
@@ -18,7 +19,104 @@ public:
 	ResourceManager();
 	~ResourceManager();
 
-
+	/// <summary>
+	/// 画像んの読み込み
+	/// </summary>
+	/// <param name="out"></param>
+	/// <param name=""></param>
+	/// <param name="isNotRelese"></param>
+	void LoadTexture(SharedGraphicHandle& out, const std::filesystem::path& path, 
+		bool isNotRelese = false);
 	
+	/// <summary>
+	/// 画像分割読み込み
+	/// </summary>
+	/// <param name="out"></param>
+	/// <param name=""></param>
+	/// <param name="divCount"></param>
+	/// <param name="divSize"></param>
+	/// <param name="isMotRelese"></param>
+	void LoadDivTexture(SharedDivGraphicHandle& out, const std::filesystem::path& path, 
+		const Vector2& divCount, const Vector2I& divSize, bool isNotRelese = false);
+
+	/// <summary>
+	/// モデル版
+	/// </summary>
+	/// <param name="out"></param>
+	/// <param name=""></param>
+	/// <param name="isNotRelese"></param>
+	void LoadModelTexture(SharedGraphicHandle& out, const std::filesystem::path& path,
+		bool isNotRelese = false);
+
+	/// <summary>
+	/// 一致するグラフィックハンドルを削除
+	/// </summary>
+	/// <param name="handle"></param>
+	void Remove(SharedGraphicHandle& handle);
+
+	/// <summary>
+	/// 一致するグラフィックハンドルを削除
+	/// </summary>
+	/// <param name="handle"></param>
+	void Remove(SharedDivGraphicHandle& handle);
+	
+	/// <summary>
+	/// レンダーターゲットの作成
+	/// </summary>
+	/// <param name="out"></param>
+	/// <param name="id"></param>
+	/// <param name="size"></param>
+	/// <param name="alpha"></param>
+	/// <param name="isNotRelese"></param>
+	void MakeRenderTarget(SharedRenderTargetHandle& out, const ScreenID id,
+		const Vector2& size, bool alpha, bool isNotRelese = false);
+
+	/// <summary>
+	/// 削除
+	/// </summary>
+	/// <param name="id"></param>
+	void Remove(const ScreenID id);
+
+	/// <summary>
+	/// モデルのロード
+	/// </summary>
+	/// <param name="out"></param>
+	/// <param name=""></param>
+	/// <param name="isNotRelese"></param>
+	void LoadModel(SharedModelHandle& out, const std::filesystem::path& path, 
+		bool isNotRelese = false);
+
+	/// <summary>
+	/// モデルのハンドル削除
+	/// </summary>
+	/// <param name="handle"></param>
+	void RemoveModel(const int handle);
+
+	/// <summary>
+	/// サウンドのロード
+	/// </summary>
+	/// <param name="out"></param>
+	/// <param name=""></param>
+	/// <param name="isNotRelese"></param>
+	void LoadSound(SharedSoundHandle&& out, const std::filesystem::path& path, bool isNotRelese);
+
+	/// <summary>
+	/// サウンドのハンドル削除
+	/// </summary>
+	/// <param name="handle"></param>
+	void RemoveSound(const int handle);
+
+
+	void Loaded(void);
+
+private:
+	std::mutex mutex_;
+
+
+	HandleMap imageMap_;
+	HandleDivMap imageDivMap_;
+	ScreenMap screenMap_;
+	HandleMap soundMap_;
+	ModelMap modelMap_;
 };
 

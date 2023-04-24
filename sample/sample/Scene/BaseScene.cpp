@@ -3,6 +3,7 @@
 #include "../SceneManager.h"
 #include "../Object/ObjectManager.h"
 #include "../Common/Camera.h"
+#include "../Common/ResourceManager.h"
 #include "../UI/UiManager.h"
 #include "../Common/Input/InputType/Keybord.h"
 #include "../Common/Input/InputType/Pad.h"
@@ -50,7 +51,7 @@ bool BaseScene::IsLoaded(void)
 	return false;
 }
 
-SceneUptr BaseScene::Update(SceneUptr own, float delta, Controller& controller)
+BaseScene::SceneUptr BaseScene::Update(SceneUptr own, float delta, Controller& controller)
 {
 	return SceneUptr();
 }

@@ -8,7 +8,6 @@ enum class ScreenID
 	SelectUI,		// 選択シーンのUI表示
 	Game,			// プレイ中
 	Result,			// リザルト
-	Transition,		// トランジション
 	Pause,			// ポーズ画面
 	Option,			// オプション
 	OptionUI,		// オプションのUI表示

@@ -1,7 +1,7 @@
 #include "SceneManager.h"
 #include <DxLib.h>
 #include "Common/ResourceManager.h"
-
+#include "resourse.h"
 #include "Common/Input/InputComfig/InputConfig.h"
 #include "Common/ThreadPool.h"
 #include "Common/Input/InputType/Keybord.h"

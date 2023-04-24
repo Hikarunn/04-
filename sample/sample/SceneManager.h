@@ -22,9 +22,16 @@ public:
 	/// </summary>
 	int Run(void);
 
+	/// <summary>
+	/// 描画処理
+	/// </summary>
 	void Draw();
 
+	/// <summary>
+	/// 更新処理
+	/// </summary>
 	void Update();
+
 
 	static SceneManager& GetInstance(void)
 	{
@@ -67,6 +74,8 @@ public:
 	// スクリーンサイズ
 	template<ValueC C>
 	static constexpr Vector2Tmp<C> screenSize_{ 1920, 1080}
+
+	Controller& GetController(void);
 
 private:
 	SceneManager();

@@ -35,32 +35,29 @@ void SharedHandle::SetPtr(std::shared_ptr<int>& ptr)
 {
 }
 
-//SharedRenderTargetHandle::SharedRenderTargetHandle(const int handle, const ScreenID id):
-//	SharedHandle{ handle },id_{id}
-//{
-//}
+SharedRenderTargetHandle::SharedRenderTargetHandle(const int handle, const ScreenID id):
+	SharedHandle{ handle },id_{id}
+{
+}
 
-SharedRenderTargetHandle::SharedRenderTargetHandle(const SharedRenderTargetHandle& sharedHandle) noexcept
+SharedRenderTargetHandle::SharedRenderTargetHandle(const SharedRenderTargetHandle& sharedHandle) noexcept:
+	SharedHandle{ sharedHandle },id_{sharedHandle.id_}
 {
 }
 
 SharedRenderTargetHandle::~SharedRenderTargetHandle()
 {
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		lpSceneManager.GetResourceManager().Remove(id_);
+		DeleteGraph(*ptr_);
+	}
 }
 
 SharedRenderTargetHandle& SharedRenderTargetHandle::operator=(const SharedRenderTargetHandle& sharedHandle) noexcept
 {
 	// TODO: return ステートメントをここに挿入します
 }
-
-void SharedRenderTargetHandle::SetHandle(const int handle)
-{
-}
-
-void SharedRenderTargetHandle::CopyParent(void)
-{
-}
-
 SharedFontHandle::SharedFontHandle(const int handle)
 {
 }
@@ -186,3 +183,19 @@ SharedGraphicHandle& SharedGraphicHandle::operator=(const SharedGraphicHandle& h
 	// TODO: return ステートメントをここに挿入します
 }
 
+SharedSoundHandle::~SharedSoundHandle()
+{
+}
+
+SharedSoundHandle& SharedSoundHandle::operator=(const SharedSoundHandle& sharedHandle) noexcept
+{
+	// TODO: return ステートメントをここに挿入します
+}
+
+void SharedSoundHandle::SetHandle(const int handle)
+{
+}
+
+void SharedSoundHandle::CopyParent(void)
+{
+}

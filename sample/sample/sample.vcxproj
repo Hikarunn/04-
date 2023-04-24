@@ -201,6 +201,7 @@
     <ClInclude Include="Object\ObjectManager.h" />
     <ClInclude Include="Common\Input\InputType\Pad.h" />
     <ClInclude Include="Common\ResourceManager.h" />
+    <ClInclude Include="resourse.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Common\Time.h" />

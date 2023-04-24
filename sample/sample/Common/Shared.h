@@ -152,13 +152,13 @@ public:
 };
 
 // サウンド用
-class SharedRenderTargetHandle :
+class SharedSoundHandle :
 	public SharedHandle
 {
 public:
-	SharedRenderTargetHandle(){}
-	~SharedRenderTargetHandle();
-	SharedRenderTargetHandle& operator=(const SharedRenderTargetHandle& sharedHandle)noexcept;
+	SharedSoundHandle(){}
+	~SharedSoundHandle();
+	SharedSoundHandle& operator=(const SharedSoundHandle& sharedHandle)noexcept;
 	void SetHandle(const int handle);
 	void CopyParent(void);
 	int handle_{ -1 };

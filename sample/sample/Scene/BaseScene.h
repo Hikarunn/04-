@@ -5,10 +5,12 @@
 #include <list>
 #include "SceneID.h"
 #include "../Component/ComponentID.h"
+#include "../Common/Shared.h"
 #include "../Common/ScreenID.h"
 #include "../Common/Input/Controller.h"
 
 class BaseScene;
+class Camera;
 class ObjectManager;
 class UiManager;
 class Controller;
@@ -124,7 +126,7 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>カメラの参照</returns>
-	Camera& camera(void)
+	Camera& GetCamera(void)
 	{
 		return *camera_;
 	}
@@ -134,7 +136,7 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>オブジェクトマネージャーの参照</returns>
-	ObjectManager& objectManager(void)
+	ObjectManager& GetObjectManager(void)
 	{
 		return *objManager_;
 	}
@@ -146,6 +148,9 @@ protected:
 
 	// スクリーンのID
 	ScreenID screenID_;
+
+	// スクリーンハンドル
+	SharedRenderTargetHandle screenHandle_;
 
 	// カメラ
 	std::unique_ptr<Camera> camera_;
