@@ -9,7 +9,6 @@
 #define Thread (SceneManager::GetInstance().GetThredPool())
 
 class ResourceManager;
-
 class BaseScene;
 class ThreadPool;
 class Controller;
@@ -106,7 +105,7 @@ private:
 	// 終了するかのフラグ
 	bool isEnd_;
 
-	//std::unique_ptr<>
+	std::unique_ptr<ResourceManager>resourceManager_;
 
 	// タイムクラス
 	TimeClass timeClass_;

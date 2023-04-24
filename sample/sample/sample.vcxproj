@@ -154,14 +154,20 @@
     <ClCompile Include="Component\ComponentBase.cpp" />
     <ClCompile Include="Component\ComponentPool.cpp" />
     <ClCompile Include="Common\Input\Controller.cpp" />
+    <ClCompile Include="Scene\InputSetScene.cpp" />
+    <ClCompile Include="Scene\ResultScene.cpp" />
+    <ClCompile Include="Scene\DialogScene.cpp" />
     <ClCompile Include="Factory\Factory.cpp" />
     <ClCompile Include="Component\Info\ObjectInfo.cpp" />
     <ClCompile Include="Common\Input\InputComfig\InputConfig.cpp" />
     <ClCompile Include="Common\Input\InputType\Keybord.cpp" />
+    <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Object\ObjectID.cpp" />
     <ClCompile Include="Object\ObjectManager.cpp" />
     <ClCompile Include="Common\Input\InputType\Pad.cpp" />
     <ClCompile Include="Common\ResourceManager.cpp" />
+    <ClCompile Include="Scene\OptionScene.cpp" />
+    <ClCompile Include="Scene\PauseScene.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="SceneManager.cpp" />
@@ -169,8 +175,11 @@
     <ClCompile Include="Common\ThreadPool.cpp" />
     <ClCompile Include="Common\Worker.cpp" />
     <ClCompile Include="Common\Shared.cpp" />
+    <ClCompile Include="Scene\SelectScene.cpp" />
+    <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="UI\UiBase.cpp" />
     <ClCompile Include="UI\UiManager.cpp" />
+    <ClCompile Include="Scene\WindowScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\Camera.h" />
@@ -192,15 +201,21 @@
     <ClInclude Include="Component\ComponentConcept.h" />
     <ClInclude Include="Component\Info\ObjectAttribute.h" />
     <ClInclude Include="Common\Input\Controller.h" />
+    <ClInclude Include="Scene\InputSetScene.h" />
+    <ClInclude Include="Scene\ResultScene.h" />
+    <ClInclude Include="Scene\DialogScene.h" />
     <ClInclude Include="Factory\Factory.h" />
     <ClInclude Include="Factory\FactoryID.h" />
     <ClInclude Include="Component\Info\ObjectInfo.h" />
     <ClInclude Include="Common\Input\InputComfig\InputConfig.h" />
     <ClInclude Include="Common\Input\InputType\Keybord.h" />
+    <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Object\ObjectID.h" />
     <ClInclude Include="Object\ObjectManager.h" />
     <ClInclude Include="Common\Input\InputType\Pad.h" />
     <ClInclude Include="Common\ResourceManager.h" />
+    <ClInclude Include="Scene\OptionScene.h" />
+    <ClInclude Include="Scene\PauseScene.h" />
     <ClInclude Include="resourse.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="SceneManager.h" />
@@ -209,9 +224,13 @@
     <ClInclude Include="Common\ThreadPool.h" />
     <ClInclude Include="Common\Worker.h" />
     <ClInclude Include="Common\Shared.h" />
+    <ClInclude Include="Scene\StageID.h" />
+    <ClInclude Include="Scene\SelectScene.h" />
+    <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="UI\UiBase.h" />
     <ClInclude Include="UI\UiManager.h" />
     <ClInclude Include="UI\UiID.h" />
+    <ClInclude Include="Scene\WindowScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

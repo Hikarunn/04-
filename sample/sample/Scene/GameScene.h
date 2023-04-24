@@ -42,6 +42,13 @@ public:
 		result_ = result;
 	}
 
+	/// <summary>
+	/// ƒQ[ƒ€‚É–ß‚é‚Æ‚«‚É‹²‚Şˆ—
+	/// </summary>
+	/// <param name=""></param>
+	void SetUp(void);
+	
+
 private:
 	const SceneID GetID(void)const
 	{
