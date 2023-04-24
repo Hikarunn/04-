@@ -118,5 +118,7 @@ private:
 	ScreenMap screenMap_;
 	HandleMap soundMap_;
 	ModelMap modelMap_;
+
+	std::list<std::function<void(void)>>loadedFunc_;
 };
 
