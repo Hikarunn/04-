@@ -2,5 +2,9 @@
 
 enum class FactoryID
 {
-
+	Stage,
+	Sky,
+	Player,
+	Enemy,
+	Max
 };
