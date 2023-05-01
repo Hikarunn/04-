@@ -61,9 +61,9 @@ class SharedGraphicHandle :
 public:
 	SharedGraphicHandle() {}
 	explicit SharedGraphicHandle(const int handle);
-	SharedGraphicHandle(const SharedGraphicHandle& sheardHandle) noexcept;
+	SharedGraphicHandle(const SharedGraphicHandle& sharedHandle) noexcept;
 	~SharedGraphicHandle();
-	SharedGraphicHandle& operator=(const SharedGraphicHandle& heardHandle) noexcept;
+	SharedGraphicHandle& operator=(const SharedGraphicHandle& sharedHandle) noexcept;
 };
 
 // 分割グラフィック用
@@ -73,9 +73,9 @@ class SharedDivGraphicHandle :
 public:
 	SharedDivGraphicHandle() {}
 	explicit SharedDivGraphicHandle(const int handle);
-	SharedDivGraphicHandle(const SharedDivGraphicHandle& sheardHandle) noexcept;
+	SharedDivGraphicHandle(const SharedDivGraphicHandle& sharedHandle) noexcept;
 	~SharedDivGraphicHandle();
-	SharedDivGraphicHandle& operator=(const SharedDivGraphicHandle& heardHandle) noexcept;
+	SharedDivGraphicHandle& operator=(const SharedDivGraphicHandle& sharedHandle) noexcept;
 
 	/// <summary>
 	/// 指定の中のハンドルにアクセスする

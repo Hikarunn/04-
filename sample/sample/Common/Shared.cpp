@@ -7,13 +7,17 @@
 
 SharedHandle::SharedHandle(const int handle)
 {
+	ptr_ = std::make_shared<int>();
+	*ptr_ = handle;
 }
 
-SharedHandle::SharedHandle(SharedHandle&& sharedHandle) noexcept
+SharedHandle::SharedHandle(SharedHandle&& sharedHandle) noexcept :
+	ptr_{std::move(sharedHandle.ptr_)}
 {
 }
 
-SharedHandle::SharedHandle(const SharedHandle& sharedHandle) noexcept
+SharedHandle::SharedHandle(const SharedHandle& sharedHandle) noexcept :
+	ptr_{std::move(sharedHandle.ptr_)}
 {
 }
 
@@ -23,16 +27,18 @@ SharedHandle::~SharedHandle() noexcept
 
 SharedHandle& SharedHandle::operator=(SharedHandle&& sharedHandle) noexcept
 {
-	// TODO: return ステートメントをここに挿入します
+	ptr_ = std::move(sharedHandle.ptr_);
+	return *this;
 }
 
 const int SharedHandle::operator*(void) const noexcept
 {
-	return 0;
+	return (ptr_ ? *ptr_ : -1);
 }
 
 void SharedHandle::SetPtr(std::shared_ptr<int>& ptr)
 {
+	ptr_ = ptr;
 }
 
 SharedRenderTargetHandle::SharedRenderTargetHandle(const int handle, const ScreenID id):
@@ -56,7 +62,16 @@ SharedRenderTargetHandle::~SharedRenderTargetHandle()
 
 SharedRenderTargetHandle& SharedRenderTargetHandle::operator=(const SharedRenderTargetHandle& sharedHandle) noexcept
 {
-	// TODO: return ステートメントをここに挿入します
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		lpSceneManager.GetResourceManager().Remove(id_);
+		DeleteGraph(*ptr_);
+		ptr_.reset();
+	}
+
+	ptr_ = sharedHandle.ptr_;
+	id_ = sharedHandle.id_;
+	return *this;
 }
 SharedFontHandle::SharedFontHandle(const int handle)
 {
@@ -105,34 +120,66 @@ SharedShaderHandle::~SharedShaderHandle()
 {
 	if (ptr_ && ptr_.use_count() <= 2)
 	{
-		
+		lpSceneManager.GetResourceManager().Remove(*this);
+		if (ptr_.use_count() == 1)
+		{
+			DeleteShader(*ptr_);
+			ptr_.reset();
+		}
 	}
 }
 
 SharedShaderHandle& SharedShaderHandle::operator=(const SharedShaderHandle& sharedHandle) noexcept
 {
-	// TODO: return ステートメントをここに挿入します
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		lpSceneManager.GetResourceManager().Remove(*this);
+		if (ptr_.use_count() == 1)
+		{
+			DeleteShader(*ptr_);
+			ptr_.reset();
+		}
+	}
+	ptr_ = sharedHandle.ptr_;
+	return *this;
 }
 
 SharedModelHandle::~SharedModelHandle()
 {
+	MV1DeleteModel(handle_);
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		// 大元になるハンドルを削除
+		lpSceneManager.GetResourceManager().RemoveModel(*ptr_);
+	}
 }
 
 SharedModelHandle& SharedModelHandle::operator=(const SharedModelHandle& sharedHandle) noexcept
 {
-	// TODO: return ステートメントをここに挿入します
+	MV1DeleteModel(handle_);
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		// 大元になるハンドルを削除
+		lpSceneManager.GetResourceManager().RemoveModel(*ptr_);
+	}
+	ptr_ = sharedHandle.ptr_;
+	CopyParent();
+	return *this;
 }
 
 void SharedModelHandle::CopyParent(void)
 {
+	handle_ = MV1DuplicateModel(*ptr_);
 }
 
 void SharedModelHandle::SetHandle(const int handle)
 {
+	handle_ = handle;
 }
 
 void SharedModelHandle::SetParent(std::shared_ptr<int>& parent)
 {
+	ptr_ = parent;
 }
 
 const int SharedModelHandle::operator*(void) const noexcept
@@ -140,62 +187,119 @@ const int SharedModelHandle::operator*(void) const noexcept
 	return 0;
 }
 
-SharedDivGraphicHandle::SharedDivGraphicHandle(const int handle)
+SharedDivGraphicHandle::SharedDivGraphicHandle(const int handle) :
+	SharedHandle{ handle }
 {
 }
 
-SharedDivGraphicHandle::SharedDivGraphicHandle(const SharedDivGraphicHandle& sheardHandle) noexcept
+SharedDivGraphicHandle::SharedDivGraphicHandle(const SharedDivGraphicHandle& sharedHandle) noexcept :
+	SharedHandle{ sharedHandle }
 {
+
 }
 
 SharedDivGraphicHandle::~SharedDivGraphicHandle()
 {
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		lpSceneManager.GetResourceManager().Remove(*this);
+	}
 }
 
-SharedDivGraphicHandle& SharedDivGraphicHandle::operator=(const SharedDivGraphicHandle& heardHandle) noexcept
+SharedDivGraphicHandle& SharedDivGraphicHandle::operator=(const SharedDivGraphicHandle& sharedHandle) noexcept
 {
-	// TODO: return ステートメントをここに挿入します
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		// 削除すべきだったら削除する
+		lpSceneManager.GetResourceManager().Remove(*this);
+	}
+	ptr_ = sharedHandle.ptr_;
+	handles_ = sharedHandle.handles_;
+	return *this;
 }
 
 const int SharedDivGraphicHandle::operator[](size_t idx) const
 {
-	return 0;
+	return handles_[idx];
 }
 
 void SharedDivGraphicHandle::Set(const std::span<int> handles)
 {
+	handles_ = handles;
 }
 
 SharedGraphicHandle::SharedGraphicHandle(const int handle)
 {
+
 }
 
-SharedGraphicHandle::SharedGraphicHandle(const SharedGraphicHandle& sheardHandle) noexcept
+SharedGraphicHandle::SharedGraphicHandle(const SharedGraphicHandle& sharedHandle) noexcept:
+	SharedHandle{ sharedHandle }
 {
 }
 
 SharedGraphicHandle::~SharedGraphicHandle()
 {
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		lpSceneManager.GetResourceManager().Remove(*this);
+		if (ptr_.use_count() == 1)
+		{
+			// 最後なのでDelete呼ぶ
+			DeleteGraph(*ptr_);
+			ptr_.reset();
+		}
+	}
 }
 
-SharedGraphicHandle& SharedGraphicHandle::operator=(const SharedGraphicHandle& heardHandle) noexcept
+SharedGraphicHandle& SharedGraphicHandle::operator=(const SharedGraphicHandle& sharedHandle) noexcept
 {
-	// TODO: return ステートメントをここに挿入します
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		// 削除すべきだったら削除する
+		lpSceneManager.GetResourceManager().Remove(*this);
+		if (ptr_.use_count() == 1)
+		{
+			// 最後なのでDelete呼ぶ
+			DeleteGraph(*ptr_);
+			ptr_.reset();
+		}
+	}
+	ptr_ = sharedHandle.ptr_;
+	return *this;
 }
 
 SharedSoundHandle::~SharedSoundHandle()
 {
+	if (ptr_)
+	{
+		if (ptr_.use_count() <= 2)
+		{
+			lpSceneManager.GetResourceManager().RemoveSound(*ptr_);
+		}
+		DeleteSoundMem(handle_);
+		ptr_.reset();
+	}
 }
 
 SharedSoundHandle& SharedSoundHandle::operator=(const SharedSoundHandle& sharedHandle) noexcept
 {
-	// TODO: return ステートメントをここに挿入します
+	DeleteSoundMem(handle_);
+	if (ptr_ && ptr_.use_count() <= 2)
+	{
+		lpSceneManager.GetResourceManager().RemoveSound(*ptr_);
+	}
+	ptr_ = sharedHandle.ptr_;
+	handle_ = DuplicateSoundMem(*ptr_);
+	return *this;
 }
 
 void SharedSoundHandle::SetHandle(const int handle)
 {
+	handle_ = handle;
 }
 
 void SharedSoundHandle::CopyParent(void)
 {
+	handle_ = DuplicateSoundMem(*ptr_);
 }
