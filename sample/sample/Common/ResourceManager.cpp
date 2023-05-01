@@ -13,6 +13,7 @@ ResourceManager::~ResourceManager()
 	screenMap_.clear();
 	modelMap_.clear();
 	soundMap_.clear();
+	shaderMap_.clear();
 }
 
 void ResourceManager::LoadTexture(SharedGraphicHandle& out, const std::filesystem::path& path, bool isNotRelese)
@@ -202,6 +203,66 @@ void ResourceManager::RemoveModel(const int handle)
 		return false;
 		});
 
+}
+
+void ResourceManager::LoadPS(SharedShaderHandle& out, const std::filesystem::path& path, bool isNotRelese)
+{
+	auto key{ std::hash<std::string>()(path.string()) };
+	if (shaderMap_.contains(key))
+	{
+		out.SetPtr(shaderMap_[key].first);
+		return;
+	}
+	int h{ LoadPixelShader(path.wstring().c_str()) };
+	if (h == -1)
+	{
+		DebugErrorLog("ピクセルシェーダ読み込み失敗");
+	}
+	shaderMap_.emplace(key, std::make_pair(std::make_shared<int>(), isNotRelese));
+	*shaderMap_[key].first = h;
+	out.SetPtr(shaderMap_[key].first);
+	return;
+}
+
+void ResourceManager::LoadVS(SharedShaderHandle& out, const std::filesystem::path& path, bool isNotRelese)
+{
+	auto key{ std::hash<std::string>()(path.string()) };
+	if (shaderMap_.contains(key))
+	{
+		out.SetPtr(shaderMap_[key].first);
+		return;
+	}
+	int h{ LoadVertexShader(path.wstring().c_str()) };
+	if (h == -1)
+	{
+		DebugErrorLog("頂点シェーダ読み込み失敗");
+	}
+	shaderMap_.emplace(key, std::make_pair(std::make_shared<int>(), isNotRelese));
+	*shaderMap_[key].first = h;
+	out.SetPtr(shaderMap_[key].first);
+	return;
+}
+
+bool ResourceManager::IsRemove(SharedShaderHandle& handle)
+{
+	auto itr = std::find_if(shaderMap_.begin(), shaderMap_.end(), [&handle](auto& img) {return *img.second.first == *handle; });
+	if (itr == shaderMap_.end())
+	{
+		return false;
+	}
+	return !itr->second.second;
+}
+
+void ResourceManager::Remove(SharedShaderHandle& handle)
+{
+	auto itr = std::find_if(shaderMap_.begin(), shaderMap_.end(), [&handle](auto& img) {return *img.second.first == *handle; });
+	if (itr != shaderMap_.end())
+	{
+		if (!itr->second.second)
+		{
+			shaderMap_.erase(itr);
+		}
+	}
 }
 
 void ResourceManager::LoadSound(SharedSoundHandle&& out, const std::filesystem::path& path, bool isNotRelese)

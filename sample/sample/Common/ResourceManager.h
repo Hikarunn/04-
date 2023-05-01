@@ -93,6 +93,36 @@ public:
 	void RemoveModel(const int handle);
 
 	/// <summary>
+	/// ピクセルシェーダを読み込む
+	/// </summary>
+	/// <param name="path"></param>
+	/// <param name="isNotRelese"></param>
+	/// <returns></returns>
+	void LoadPS(SharedShaderHandle& out, const std::filesystem::path& path, bool isNotRelese = false);
+
+	/// <summary>
+	/// 頂点シェーダを読み込む
+	/// </summary>
+	/// <param name="path"></param>
+	/// <param name="isNotRelese"></param>
+	/// <returns></returns>
+	void LoadVS(SharedShaderHandle& out, const std::filesystem::path& path, bool isNotRelese = false);
+
+	/// <summary>
+	/// 一致するシェーダハンドルが管理から削除すべきか
+	/// </summary>
+	/// <param name="handle"></param>
+	/// <returns></returns>
+	bool IsRemove(SharedShaderHandle& handle);
+
+	/// <summary>
+	/// 一致するシェーダハンドルを管理から削除する
+	/// </summary>
+	/// <param name="handle"></param>
+	void Remove(SharedShaderHandle& handle);
+
+
+	/// <summary>
 	/// サウンドのロード
 	/// </summary>
 	/// <param name="out"></param>
@@ -118,6 +148,7 @@ private:
 	ScreenMap screenMap_;
 	HandleMap soundMap_;
 	ModelMap modelMap_;
+	HandleMap shaderMap_;
 
 	std::list<std::function<void(void)>>loadedFunc_;
 };

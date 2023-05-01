@@ -23,7 +23,7 @@ struct ObjectDataHeader
 struct DataHeader
 {
 	DataType type;			// タイプ
-	std::uint32_t size;
+	std::uint32_t size;		// データサイズ
 };
 
 // 当たり判定データ種類
