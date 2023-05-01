@@ -153,50 +153,7 @@ Quaternion ToQuaternion(Vector3& e)
         sx * sy * cz + cx * cy * sz,
         sx * sy * sz + cx * cy * cz
     );
-    //switch (e.order) {
-    //case EulerOrder::XYZ:
-    //    return Quaternion(
-    //        cx * sy * sz + sx * cy * cz,
-    //        -sx * cy * sz + cx * sy * cz,
-    //        cx * cy * sz + sx * sy * cz,
-    //        -sx * sy * sz + cx * cy * cz
-    //    );
-    //case EulerOrder::XZY:
-    //    return Quaternion(
-    //        -cx * sy * sz + sx * cy * cz,
-    //        cx * sy * cz - sx * cy * sz,
-    //        sx * sy * cz + cx * cy * sz,
-    //        sx * sy * sz + cx * cy * cz
-    //    );
-    //case EulerOrder::YXZ:
-    //    return Quaternion(
-    //        cx * sy * sz + sx * cy * cz,
-    //        -sx * cy * sz + cx * sy * cz,
-    //        cx * cy * sz - sx * sy * cz,
-    //        sx * sy * sz + cx * cy * cz
-    //    );
-    //case EulerOrder::YZX:
-    //    return Quaternion(
-    //        sx * cy * cz + cx * sy * sz,
-    //        sx * cy * sz + cx * sy * cz,
-    //        -sx * sy * cz + cx * cy * sz,
-    //        -sx * sy * sz + cx * cy * cz
-    //    );
-    //case EulerOrder::ZXY:
-    //    return Quaternion(
-    //        -cx * sy * sz + sx * cy * cz,
-    //        cx * sy * cz + sx * cy * sz,
-    //        sx * sy * cz + cx * cy * sz,
-    //        -sx * sy * sz + cx * cy * cz
-    //    );
-    //case EulerOrder::ZYX:
-    //    return Quaternion(
-    //        sx * cy * cz - cx * sy * sz,
-    //        sx * cy * sz + cx * sy * cz,
-    //        -sx * sy * cz + cx * cy * sz,
-    //        sx * sy * sz + cx * cy * cz
-    //    );
-    //}
+  
 }
 
 Vector3 ToEuler(MATRIX& m)
