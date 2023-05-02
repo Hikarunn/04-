@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Component\Behavior\Behavior.cpp" />
     <ClCompile Include="Component\Collider\CapsuleCollider.cpp" />
     <ClCompile Include="Component\Collider\CharactorCollider.cpp" />
     <ClCompile Include="Component\Collider\Collider.cpp" />
@@ -159,6 +160,7 @@
     <ClCompile Include="Component\ComponentPool.cpp" />
     <ClCompile Include="Common\Input\Controller.cpp" />
     <ClCompile Include="Component\Collider\MeshCollider.cpp" />
+    <ClCompile Include="Component\Render\Render.cpp" />
     <ClCompile Include="Scene\InputSetScene.cpp" />
     <ClCompile Include="Scene\ResultScene.cpp" />
     <ClCompile Include="Scene\DialogScene.cpp" />
@@ -185,11 +187,13 @@
     <ClCompile Include="Component\Collider\SphereCollider.cpp" />
     <ClCompile Include="Component\Collider\TerrainCollider.cpp" />
     <ClCompile Include="Component\Transform\Transform.cpp" />
+    <ClCompile Include="Component\Sound\Sound.cpp" />
     <ClCompile Include="UI\UiBase.cpp" />
     <ClCompile Include="UI\UiManager.cpp" />
     <ClCompile Include="Scene\WindowScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Component\Behavior\Behavior.h" />
     <ClInclude Include="Common\Input\InputComfig\InputConfigManager.h" />
     <ClInclude Include="Component\Collider\CapsuleCollider.h" />
     <ClInclude Include="Component\Collider\CharactorCollider.h" />
@@ -217,6 +221,7 @@
     <ClInclude Include="Component\Info\ObjectAttribute.h" />
     <ClInclude Include="Common\Input\Controller.h" />
     <ClInclude Include="Component\Collider\MeshCollider.h" />
+    <ClInclude Include="Component\Render\Render.h" />
     <ClInclude Include="Scene\InputSetScene.h" />
     <ClInclude Include="Scene\ResultScene.h" />
     <ClInclude Include="Scene\DialogScene.h" />
@@ -246,6 +251,7 @@
     <ClInclude Include="Component\Collider\SphereCollider.h" />
     <ClInclude Include="Component\Collider\TerrainCollider.h" />
     <ClInclude Include="Component\Transform\Transform.h" />
+    <ClInclude Include="Component\Sound\Sound.h" />
     <ClInclude Include="UI\UiBase.h" />
     <ClInclude Include="UI\UiManager.h" />
     <ClInclude Include="UI\UiID.h" />
