@@ -184,6 +184,7 @@
     <ClCompile Include="Scene\TitleScene.cpp" />
     <ClCompile Include="Component\Collider\SphereCollider.cpp" />
     <ClCompile Include="Component\Collider\TerrainCollider.cpp" />
+    <ClCompile Include="Component\Transform\Transform.cpp" />
     <ClCompile Include="UI\UiBase.cpp" />
     <ClCompile Include="UI\UiManager.cpp" />
     <ClCompile Include="Scene\WindowScene.cpp" />
@@ -244,6 +245,7 @@
     <ClInclude Include="Scene\TitleScene.h" />
     <ClInclude Include="Component\Collider\SphereCollider.h" />
     <ClInclude Include="Component\Collider\TerrainCollider.h" />
+    <ClInclude Include="Component\Transform\Transform.h" />
     <ClInclude Include="UI\UiBase.h" />
     <ClInclude Include="UI\UiManager.h" />
     <ClInclude Include="UI\UiID.h" />
