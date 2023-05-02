@@ -15,14 +15,14 @@ enum class Triger
 };
 
 // 入力装置の種類
-enum class CountType
+enum class ControllerType
 {
 	Key,			// キーボード
 	Pad,			// パッド
 	Max
 };
 
-using InputData = std::array<std::pair<bool, bool>, static_cast<size_t>(InputID::Max) + 1>;
+using InputData = std::array<std::pair<bool, bool>, static_cast<size_t>(ControllerInputID::Max) + 1>;
 
 class Controller
 {
@@ -56,42 +56,42 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns>コントローラーの種類</returns>
-	virtual CountType GetCountType(void) = 0;
+	virtual ControllerType GetControllerType(void) = 0;
 
 	/// <summary>
 	/// 左クリックしているか
 	/// </summary>
 	/// <param name="id">キーの種類</param>
 	/// <returns>成否→　true,false</returns>
-	bool MousePress(InputID id);
+	bool MousePress(ControllerInputID id);
 
 	/// <summary>
 	/// 押しているか
 	/// </summary>
 	/// <param name="id">キーの種類</param>
 	/// <returns></returns>
-	bool Press(InputID id);
+	bool Press(ControllerInputID id);
 
 	/// <summary>
 	/// 押した瞬間
 	/// </summary>
 	/// <param name="id">キーの種類</param>
 	/// <returns></returns>
-	bool Pressed(InputID id);
+	bool Pressed(ControllerInputID id);
 
 	/// <summary>
 	/// 離した瞬間
 	/// </summary>
 	/// <param name="id">キーの種類</param>
 	/// <returns></returns>
-	bool Released(InputID id);
+	bool Released(ControllerInputID id);
 
 	/// <summary>
 	/// 押されていないとき
 	/// </summary>
 	/// <param name="id"></param>
 	/// <returns></returns>
-	bool NotPress(InputID id);
+	bool NotPress(ControllerInputID id);
 
 	/// <summary>
 	/// 何も押されていないかどうか
@@ -167,7 +167,7 @@ public:
 	/// <param name="limit">最大時間</param>
 	/// <param name="delta">デルタタイム</param>
 	/// <returns></returns>
-	std::string LongPress(InputID id, double limit, double delta);
+	std::string LongPress(ControllerInputID id, double limit, double delta);
 
 	/// <summary>
 	/// インプットデータを取得

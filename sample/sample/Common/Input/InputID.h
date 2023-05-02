@@ -2,7 +2,7 @@
 #include <type_traits>
 
 // ÉLÅ[èÓïÒ
-enum class InputID
+enum class ControllerInputID
 {
 	Jump,
 	Attack,
@@ -19,7 +19,27 @@ enum class InputID
 	Max
 };
 
-static InputID begin(InputID) { return InputID::Jump; }
-static InputID end(InputID) { return InputID::Max; }
-static InputID operator++(InputID& state) { return (state = static_cast<InputID>(std::underlying_type<InputID>::type(state) + 1)); }
-static InputID operator*(const InputID& state) { return state; }
+enum class KeyInputID
+{
+	Jump,
+	Attack,
+	MainTrigerChange,
+	SubTrigerAttack,
+	SubTrigerChange1,
+	SubTrigerChange2,
+	SubTrigerChange3,
+	SubTrigerChange4,
+	LockOn,
+	CameraFlont,
+	Max
+};
+
+static ControllerInputID begin(ControllerInputID) { return ControllerInputID::Jump; }
+static ControllerInputID end(ControllerInputID) { return ControllerInputID::Max; }
+static ControllerInputID operator++(ControllerInputID& state) { return (state = static_cast<ControllerInputID>(std::underlying_type<ControllerInputID>::type(state) + 1)); }
+static ControllerInputID operator*(const ControllerInputID& state) { return state; }
+
+static KeyInputID begin(KeyInputID) { return KeyInputID::Jump; }
+static KeyInputID end(KeyInputID) { return KeyInputID::Max; }
+static KeyInputID operator++(KeyInputID& state) { return (state = static_cast<KeyInputID>(std::underlying_type<ControllerInputID>::type(state) + 1)); }
+static KeyInputID operator*(const KeyInputID& state) { return state; }

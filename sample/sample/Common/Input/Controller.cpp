@@ -18,14 +18,14 @@ Controller::~Controller()
 {
 }
 
-CountType Controller::GetCountType(void)
+ControllerType Controller::GetControllerType(void)
 {
    
 }
 
-bool Controller::MousePress(InputID id)
+bool Controller::MousePress(ControllerInputID id)
 {
-    if (InputID::Attack == id)
+    if (ControllerInputID::Attack == id)
     {
         if (GetMouseInput() & MOUSE_INPUT_LEFT)
         {
@@ -35,22 +35,22 @@ bool Controller::MousePress(InputID id)
     return false;
 }
 
-bool Controller::Press(InputID id)
+bool Controller::Press(ControllerInputID id)
 {
     return  data_[static_cast<size_t>(id)].first;
 }
 
-bool Controller::Pressed(InputID id)
+bool Controller::Pressed(ControllerInputID id)
 {
     return data_[static_cast<size_t>(id)].first && !data_[static_cast<size_t>(id)].second;
 }
 
-bool Controller::Released(InputID id)
+bool Controller::Released(ControllerInputID id)
 {
     return !data_[static_cast<size_t>(id)].first && data_[static_cast<size_t>(id)].second;
 }
 
-bool Controller::NotPress(InputID id)
+bool Controller::NotPress(ControllerInputID id)
 {
     return !data_[static_cast<size_t>(id)].first;
 }
@@ -58,9 +58,9 @@ bool Controller::NotPress(InputID id)
 bool Controller::IsNeutral()
 {
     bool rtnflag = false;
-    for (int n = 0; n < static_cast<int>(InputID::Max); n++)
+    for (int n = 0; n < static_cast<int>(ControllerInputID::Max); n++)
     {
-        rtnflag |= data_[static_cast<size_t>(static_cast<InputID>(n))].first;
+        rtnflag |= data_[static_cast<size_t>(static_cast<ControllerInputID>(n))].first;
     }
     return !rtnflag;
 }
@@ -68,19 +68,19 @@ bool Controller::IsNeutral()
 bool Controller::IsAnyPress()
 {
     bool rtnflag = false;
-    for (int n = 0; n < static_cast<int>(InputID::Max); n++)
+    for (int n = 0; n < static_cast<int>(ControllerInputID::Max); n++)
     {
-        rtnflag |= data_[static_cast<size_t>(static_cast<InputID>(n))].first && !data_[static_cast<size_t>(static_cast<InputID>(n))].second;
+        rtnflag |= data_[static_cast<size_t>(static_cast<ControllerInputID>(n))].first && !data_[static_cast<size_t>(static_cast<ControllerInputID>(n))].second;
     }
     return !rtnflag;
 }
 
 
-std::string Controller::LongPress(InputID id, double limit, double delta)
+std::string Controller::LongPress(ControllerInputID id, double limit, double delta)
 {
     if (!isPress_)
     {
-        if (Press(InputID::Attack))
+        if (Press(ControllerInputID::Attack))
         {
             isPress_ = true;
             PressCount_ = 0;
@@ -89,7 +89,7 @@ std::string Controller::LongPress(InputID id, double limit, double delta)
     else
     {
         PressCount_ += (float)delta;
-        if (!Press(InputID::Attack))
+        if (!Press(ControllerInputID::Attack))
         {
             isPress_ = false;
             isFinish_ = true;

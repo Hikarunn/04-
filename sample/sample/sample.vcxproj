@@ -189,6 +189,7 @@
     <ClCompile Include="Scene\WindowScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Common\Input\InputComfig\InputConfigManager.h" />
     <ClInclude Include="Component\Collider\CapsuleCollider.h" />
     <ClInclude Include="Component\Collider\CharactorCollider.h" />
     <ClInclude Include="Component\Collider\Collider.h" />
