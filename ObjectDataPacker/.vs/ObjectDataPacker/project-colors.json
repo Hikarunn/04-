@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "f30ec745-b51c-486d-bf1d-c429ef5f5b29": {
+      "ProjectGuid": "f30ec745-b51c-486d-bf1d-c429ef5f5b29",
+      "DisplayName": "ObjectDataPacker",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "その他のファイル",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}
